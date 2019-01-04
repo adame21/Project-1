@@ -17,20 +17,88 @@ body {
 .removeTopBorder {
     border-top: 0 !important;
 }
+.form-control::placeholder{
+    opacity: 0.7; 
+}
 
+.taskcard{
+    position: relative;
+    width: 13em;
+    height: 19em;
+    background-color: rgb(255, 255, 153);
+    border: 1px solid rgb(83, 47, 0);
+    border-top: 0;
+    border-bottom: 0;
+    border-radius: 13% 32% 10% 12% / 0% 8% 0% 29% ;
+    display: inline-block;
+    margin-right: 3em;
+    margin-left: 3em;
+    margin-top: 1.4em;
+    margin-bottom: 1.4em;
+    padding-left: 0.3em;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+}
+.taskstyle {
+    display: inline-block;
+    position: absolute;
+    height: 10.66em;
+    width: 7.61em;
+    top:  1.2em;
+    left: 0.5em;
+    font-size: 1.6em;
+    font-family: cursive;
+    overflow: auto;
+    word-wrap: break-word;
+    color: #323538;
+}
+.datestyle {
+    display: inline-block;
+    position: absolute;
+    top: 0.2em;
+    left: 0.6em;
+    font-size: 1.2em;
+}
 
-
-
+.timestyle {
+    display: inline-block;
+    position: absolute;
+    top: 0.2em;
+    right: 0.6em;
+    font-size: 1.2em;
+}
+.borderfix{
+    border-bottom: 1px solid #0f5aa5;
+    border-top: 1px solid #0f5aa5;
+}
+#dateid::before{
+    content: 'Finish date';
+    margin-right: 0.6em;
+    color: #6c757d;
+    opacity: 0.7;
+}
+#timeid::before{
+    content: 'Deadline';
+    margin-right: 1.5em;
+    color: #6c757d;
+    opacity: 0.7;
+}
+.errmsg{
+    font-size: 2em;
+    font-weight: bolder;
+    color: #2f64a8;
+}
 
 // Bootstrap form runover
 .form-control{
     border-radius:0;
     border:1px solid #0f5aa5;
+    border-right: 0;
     border-left-color: red !important;
     
 }
 
-input[type="text"], textarea {
+input[type="text"], textarea, .form-control:focus {
     outline: none;
     box-shadow:none !important;
     border:1px solid #0f5aa5;
@@ -41,4 +109,12 @@ input[type="text"], textarea {
 .form-control:disabled, .form-control[readonly]{
     background-color: #fcfcfc;
     opacity: 1;
+}
+.btn, .btn:focus{
+    border: 1px solid rgb(19, 104, 138);
+    width: 6em;
+    height: 2.5em;
+    font-size: 1.7em;
+    padding: 0.2em;
+    box-shadow: 5px 5px 7px rgba(33,33,33,0.7)
 }
