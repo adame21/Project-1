@@ -1,0 +1,40 @@
+body {
+  background-image: url("img/body-background.jpg");
+}
+
+.headfont {
+  font-family: cursive;
+  font-size: 4em;
+}
+
+.shulayim {
+  border: 1px solid #0f5aa5;
+  border-left: 0;
+  border-right: 0;
+  background-color: #fcfcfc;
+}
+
+.removeTopBorder {
+  border-top: 0 !important;
+}
+
+.form-control {
+  border-radius: 0;
+  border: 1px solid #0f5aa5;
+  border-left-color: red !important;
+}
+
+input[type="text"], textarea {
+  outline: none;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  border: 1px solid #0f5aa5;
+  border-right: 0;
+  background-color: #fcfcfc;
+}
+
+.form-control:disabled, .form-control[readonly] {
+  background-color: #fcfcfc;
+  opacity: 1;
+}
+/*# sourceMappingURL=style.css.map */
