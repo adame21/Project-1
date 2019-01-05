@@ -15,10 +15,8 @@ function add(){
 
 
 
-
-
     card.className = "taskcard";
-    card.innerHTML = "<span class='taskstyle'>" + task + "</span>" +"<span class='datestyle'>" + date + "</span>" + "<span class='timestyle'>" + time + "</span>";
+    card.innerHTML = "<span class='taskstyle'>" + task + "</span>" +"<span class='datestyle'>" + date + "</span>" + "<span class='timestyle'>" + time + "</span>" + "<i class='fas fa-times iconstyle' onclick='this.parentElement.remove()'>" + "</i>";
 
 
 
@@ -30,6 +28,10 @@ function add(){
     }
 
     
+}
+
+function delnote(){
+    this.parentElement.remove();
 }
 
 function validation(task,date){
