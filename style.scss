@@ -2,6 +2,11 @@ body {
     background-image: url("img/body-background.jpg");
    }
 
+.killmargin{
+    margin: 0;
+}
+
+
 .headfont{
     font-family: cursive;
     font-size: 4em;
@@ -29,7 +34,7 @@ body {
     border: 1px solid rgb(83, 47, 0);
     border-top: 0;
     border-bottom: 0;
-    border-radius: 13% 32% 10% 12% / 0% 8% 0% 29% ;
+    border-radius: 0% 32% 0% 0% / 0% 8% 0% 0% ;
     display: inline-block;
     margin-right: 3em;
     margin-left: 3em;
@@ -102,7 +107,12 @@ body {
     right: 4.4em;
 }
 
-
+.infostyle{
+    background-color: rgb(71, 17, 0);
+    font-size: 1.8em;
+    color: rgb(226, 226, 226);
+    border-radius: 4px;
+}
 
 
 // Bootstrap form runover
@@ -127,10 +137,21 @@ input[type="text"], textarea, .form-control:focus {
     opacity: 1;
 }
 .btn, .btn:focus{
-    border: 1px solid rgb(19, 104, 138);
+    border: 1px solid black;
     width: 6em;
     height: 2.5em;
     font-size: 1.7em;
     padding: 0.2em;
     box-shadow: 5px 5px 7px rgba(33,33,33,0.7)
+}
+.btn-warning{
+    border: 1px solid rgb(138, 96, 19);
+}
+
+.btn-dark{
+    border: 1px solid rgb(4, 19, 26);
+}
+
+.btn-danger{
+    border: 1px solid rgb(94, 15, 15);
 }

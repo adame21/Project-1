@@ -2,6 +2,10 @@ body {
   background-image: url("img/body-background.jpg");
 }
 
+.killmargin {
+  margin: 0;
+}
+
 .headfont {
   font-family: cursive;
   font-size: 4em;
@@ -42,7 +46,7 @@ body {
   border: 1px solid #532f00;
   border-top: 0;
   border-bottom: 0;
-  border-radius: 13% 32% 10% 12% / 0% 8% 0% 29%;
+  border-radius: 0% 32% 0% 0% / 0% 8% 0% 0%;
   display: inline-block;
   margin-right: 3em;
   margin-left: 3em;
@@ -119,6 +123,13 @@ body {
   right: 4.4em;
 }
 
+.infostyle {
+  background-color: #471100;
+  font-size: 1.8em;
+  color: #e2e2e2;
+  border-radius: 4px;
+}
+
 .form-control {
   border-radius: 0;
   border: 1px solid #0f5aa5;
@@ -141,12 +152,24 @@ input[type="text"], textarea, .form-control:focus {
 }
 
 .btn, .btn:focus {
-  border: 1px solid #13688a;
+  border: 1px solid black;
   width: 6em;
   height: 2.5em;
   font-size: 1.7em;
   padding: 0.2em;
   -webkit-box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
           box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
+}
+
+.btn-warning {
+  border: 1px solid #8a6013;
+}
+
+.btn-dark {
+  border: 1px solid #04131a;
+}
+
+.btn-danger {
+  border: 1px solid #5e0f0f;
 }
 /*# sourceMappingURL=style.css.map */
