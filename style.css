@@ -9,6 +9,15 @@ body {
 .headfont {
   font-family: cursive;
   font-size: 4em;
+  color: #F3F2F2;
+}
+
+.chalkboard {
+  background-image: url("img/chalkboard.jpg");
+  background-size: 100% 100%;
+  padding: 1.8em;
+  width: 100%;
+  height: 100%;
 }
 
 .shulayim {
@@ -113,7 +122,8 @@ body {
 .errmsg {
   font-size: 2em;
   font-weight: bolder;
-  color: #2f64a8;
+  color: #F3F2F2;
+  font-family: cursive;
 }
 
 .iconstyle {
@@ -124,10 +134,15 @@ body {
 }
 
 .infostyle {
-  background-color: #471100;
   font-size: 1.8em;
-  color: #e2e2e2;
+  color: #F3F2F2;
   border-radius: 4px;
+  font-family: cursive;
+}
+
+.required {
+  color: red;
+  font-size: 1.24em;
 }
 
 .form-control {

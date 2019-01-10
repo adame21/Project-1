@@ -1,7 +1,7 @@
 
 var tasks = [];
 
-// onclick='this.parentElement.remove()'
+
 
 function initializenotes() {
 
@@ -16,12 +16,8 @@ function initializenotes() {
         var container = document.getElementById("taskcontainer");
         var card = document.createElement("div");
 
-
-
         card.className = "taskcard";
         card.innerHTML = "<span class='taskstyle'>" + backup[i].task + "</span>" + "<span class='datestyle'>" + backup[i].date + "</span>" + "<span class='timestyle'>" + backup[i].time + "</span>" + "<i class='fas fa-times iconstyle' onclick='this.parentElement.remove();deletenote(" + backup[i].id + ")'>" + "</i>";
-
-
 
         container.append(card);
     }
@@ -88,6 +84,9 @@ function clearallnotes() {
         tasks.splice(0, tasks.length);
         localStorage.setItem("tasks", JSON.stringify(tasks));
         document.getElementById("totalnotes").innerHTML = " " + tasks.length;
+        var task = document.forms["inputform"]["task"].value = "";
+        var date = document.forms["inputform"]["date"].value = "";
+        var time = document.forms["inputform"]["time"].value = "";
     }
 }
 
@@ -105,7 +104,7 @@ function createobj(task, date, time, id) {
 
 function validation(task, date) {
     if (task == "") {
-        document.getElementById("errormsg").innerHTML = "Task required";
+        document.getElementById("errormsg").innerHTML = "Task empty";
         return false;
     }
     else if (date == "") {
@@ -123,7 +122,7 @@ function idvalidation(id){
             if(id == tasks[i].id){
                 id = Math.floor(Math.random() * 1000000);
                 tasks[i].id = id;
-                idvalidation();
+                idvalidation(tasks[i].id);
             }
             else {
                 return true;
