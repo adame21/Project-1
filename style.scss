@@ -19,7 +19,6 @@ body {
     padding: 1.8em;
     width: 100%;
     height: 100%;
-    
 }
 
 .shulayim {
@@ -38,13 +37,12 @@ body {
 
 .taskcard{
     position: relative;
-    width: 13em;
-    height: 19em;
+    width: 22em;
+    height: 38em;
     background-color: rgb(255, 255, 153);
     border: 1px solid rgb(83, 47, 0);
     border-top: 0;
     border-bottom: 0;
-    border-radius: 0% 32% 0% 0% / 0% 8% 0% 0% ;
     display: inline-block;
     margin-right: 3em;
     margin-left: 3em;
@@ -59,16 +57,20 @@ body {
     .iconstyle{
         opacity: 1;
     }
+    .editstyle{
+        opacity: 1;
+    }
 }
 
 .taskstyle {
     display: inline-block;
     position: absolute;
-    height: 10.66em;
-    width: 7.61em;
-    top:  1.2em;
+    height: 21em;
+    width: 13.1em;
+    top:  2.2em;
     left: 0.5em;
     font-size: 1.6em;
+    line-height: 190%;
     font-family: cursive;
     overflow: auto;
     word-wrap: break-word;
@@ -79,7 +81,7 @@ body {
     position: absolute;
     top: 0.2em;
     left: 0.6em;
-    font-size: 1.2em;
+    font-size: 1.7em;
 }
 
 .timestyle {
@@ -87,7 +89,7 @@ body {
     position: absolute;
     top: 0.2em;
     right: 0.6em;
-    font-size: 1.2em;
+    font-size: 1.7em;
 }
 .borderfix{
     border-bottom: 1px solid #0f5aa5;
@@ -105,17 +107,35 @@ body {
     color: #6c757d;
     opacity: 0.7;
 }
-.errmsg{
+.reqmsg{
     font-size: 2em;
     font-weight: bolder;
     color: #F3F2F2;
     font-family: cursive;
 }
+.errmsg{
+    font-size: 2em;
+    font-weight: bolder;
+    color: red;
+    font-family: cursive;
+}
+
 .iconstyle{
     opacity: 0;
     position: absolute;
-    top: 0.7em;
-    right: 4.4em;
+    top: 0.5em;
+    right: 2.8em;
+    font-size: 2em;
+    color: red;
+}
+
+.editstyle{
+    opacity: 0;
+    position: absolute;
+    top: 0.6em;
+    right: 4.5em;
+    font-size: 1.8em;
+    color: blue;
 }
 
 .infostyle{
@@ -170,4 +190,10 @@ input[type="text"], textarea, .form-control:focus {
 
 .btn-danger{
     border: 1px solid rgb(94, 15, 15);
+}
+.btn-success{
+    border: 1px solid rgb(0, 83, 0);
+}
+.btn-secondary{
+    border: 1px solid rgb(15, 15, 15);
 }
