@@ -1,7 +1,56 @@
 
 var tasks = [];
 
+function fixformat(x){
+    if(x<10){
+        x = '0' + x;
+    }
+    return x;
+}
 
+function tutorialnotes() {
+    var backup = JSON.parse(localStorage.getItem("tasks"));
+    if (backup !== null) {
+        initializenotes();
+    }
+    else {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        var h = today.getHours();
+        var m = today.getMinutes();
+
+        dd = fixformat(dd);
+        mm = fixformat(mm);
+        h = fixformat(h);
+        m = fixformat(m);
+
+
+        var readydate = yyyy + '-' + mm + '-' + dd;
+        var readytime = h + ':' + m ;
+
+        tasks.push(createobj("Welcome to To-do list, these notes are a quick tutorial, they will re-apear if you clear all notes.", readydate, readytime, 0));
+        tasks.push(createobj("Hover on a note to edit or erase it - while in edit mode you cannot do other things", readydate, readytime, 1));
+        tasks.push(createobj("While in edit mode 2 new buttons will apear, use those buttons to save or cancel your edits.", readydate, readytime, 2));
+
+        for (var i = 0; i < 3; i++) {
+            var container = document.getElementById("taskcontainer");
+
+            var card = document.createElement("div");
+
+            card.className = "taskcard";
+
+            card.innerHTML = "<span class='taskstyle'>" + tasks[i].task + "</span>" + "<span class='datestyle'>" + tasks[i].date + "</span>" + "<span class='timestyle'>" + tasks[i].time + "</span>" + "<i class='fas fa-times iconstyle' onclick='deletenote(" + tasks[i].id + ',this' + ")'></i>" + "<i class='far fa-edit editstyle' onclick='editnote(this)'></i>";
+
+            container.append(card);
+        }
+
+        document.getElementById("totalnotes").innerHTML = " " + tasks.length;
+    }
+
+}
+tutorialnotes();
 
 function initializenotes() {
 
@@ -22,7 +71,7 @@ function initializenotes() {
         container.append(card);
     }
 }
-initializenotes();
+
 
 
 
@@ -106,7 +155,8 @@ function clearallnotes() {
         if (confirm('Are you sure you want to clear all notes?')) {
             document.getElementById("taskcontainer").innerHTML = "";
             tasks.splice(0, tasks.length);
-            localStorage.setItem("tasks", JSON.stringify(tasks));
+            // localStorage.setItem("tasks", JSON.stringify(tasks));
+            localStorage.clear();
             document.getElementById("totalnotes").innerHTML = " " + tasks.length;
             document.forms["inputform"]["task"].value = "";
             document.forms["inputform"]["date"].value = "";
@@ -117,6 +167,7 @@ function clearallnotes() {
 
 function editnote(icon) {
     document.getElementById("errormsg").innerHTML = "Edit mode";
+    icon.parentElement.style.border = "2px solid red";
     var checkeditactive = document.getElementById("saveedit");
     if (checkeditactive !== null) {
         window.scroll(0, 0);
@@ -165,6 +216,7 @@ function editnote(icon) {
         var editedtime = document.forms["inputform"]["time"].value;
 
         if (validation(editedtask, editeddate) == true) {
+            icon.parentElement.style.border = "1px solid rgb(83, 47, 0)";
             icon.parentElement.children[0].innerHTML = editedtask;
             icon.parentElement.children[1].innerHTML = editeddate;
             icon.parentElement.children[2].innerHTML = editedtime;
@@ -197,6 +249,7 @@ function editnote(icon) {
 
     function discardchanges(icon) {
         console.log("discard");
+        icon.parentElement.style.border = "1px solid rgb(83, 47, 0)";
         document.forms["inputform"]["task"].value = "";
         document.forms["inputform"]["date"].value = "";
         document.forms["inputform"]["time"].value = "";
