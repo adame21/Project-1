@@ -2,6 +2,10 @@ body {
   background-image: url("img/body-background.jpg");
 }
 
+.killmargin {
+  margin: 0;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 0.7em;
@@ -25,10 +29,6 @@ body {
   background: #946000;
 }
 
-.killmargin {
-  margin: 0;
-}
-
 .headfont {
   font-family: cursive;
   font-size: 4em;
@@ -43,6 +43,27 @@ body {
   height: 100%;
 }
 
+.reqmsg {
+  font-size: 2em;
+  font-weight: bolder;
+  color: #F3F2F2;
+  font-family: cursive;
+}
+
+.errmsg {
+  font-size: 2em;
+  font-weight: bolder;
+  color: red;
+  font-family: cursive;
+}
+
+.infostyle {
+  font-size: 1.8em;
+  color: #F3F2F2;
+  border-radius: 4px;
+  font-family: cursive;
+}
+
 .shulayim {
   border: 1px solid #0f5aa5;
   border-left: 0;
@@ -50,35 +71,34 @@ body {
   background-color: #fcfcfc;
 }
 
+#dateid::before {
+  content: 'Finish date';
+  margin-right: 0.6em;
+  color: #6c757d;
+  opacity: 0.7;
+}
+
+#timeid::before {
+  content: 'Deadline';
+  margin-right: 1.5em;
+  color: #6c757d;
+  opacity: 0.7;
+}
+
+.required {
+  color: red;
+  font-size: 1.24em;
+}
+
 .removeTopBorder {
   border-top: 0 !important;
 }
 
-.form-control::-webkit-input-placeholder {
-  opacity: 0.7;
-}
-
-.form-control:-ms-input-placeholder {
-  opacity: 0.7;
-}
-
-.form-control::-ms-input-placeholder {
-  opacity: 0.7;
-}
-
-.form-control::placeholder {
-  opacity: 0.7;
-}
-
 .taskcard {
   position: relative;
-  width: 22em;
-  height: 38em;
-  background-color: #ffff99;
-  border: 1px solid #532f00;
+  display: inline-block;
   border-top: 0;
   border-bottom: 0;
-  display: inline-block;
   margin-right: 3em;
   margin-left: 3em;
   margin-top: 1.4em;
@@ -86,6 +106,10 @@ body {
   padding-left: 0.3em;
   padding-top: 0.7em;
   padding-bottom: 0.7em;
+  width: 22em;
+  height: 38em;
+  background-color: #ffff99;
+  border: 1px solid #532f00;
   animation-name: slideRight;
   -webkit-animation-name: slideRight;
   animation-duration: 0.8s;
@@ -130,6 +154,8 @@ body {
 .taskstyle {
   display: inline-block;
   position: absolute;
+  overflow: auto;
+  word-wrap: break-word;
   height: 21em;
   width: 13.1em;
   top: 2.2em;
@@ -137,8 +163,6 @@ body {
   font-size: 1.6em;
   line-height: 190%;
   font-family: cursive;
-  overflow: auto;
-  word-wrap: break-word;
   color: #323538;
 }
 
@@ -156,39 +180,6 @@ body {
   top: 0.2em;
   right: 0.6em;
   font-size: 1.7em;
-}
-
-.borderfix {
-  border-bottom: 1px solid #0f5aa5;
-  border-top: 1px solid #0f5aa5;
-}
-
-#dateid::before {
-  content: 'Finish date';
-  margin-right: 0.6em;
-  color: #6c757d;
-  opacity: 0.7;
-}
-
-#timeid::before {
-  content: 'Deadline';
-  margin-right: 1.5em;
-  color: #6c757d;
-  opacity: 0.7;
-}
-
-.reqmsg {
-  font-size: 2em;
-  font-weight: bolder;
-  color: #F3F2F2;
-  font-family: cursive;
-}
-
-.errmsg {
-  font-size: 2em;
-  font-weight: bolder;
-  color: red;
-  font-family: cursive;
 }
 
 .iconstyle {
@@ -209,22 +200,10 @@ body {
   color: blue;
 }
 
-.infostyle {
-  font-size: 1.8em;
-  color: #F3F2F2;
-  border-radius: 4px;
-  font-family: cursive;
-}
-
-.required {
-  color: red;
-  font-size: 1.24em;
-}
-
 .form-control {
   border-radius: 0;
-  border: 1px solid #0f5aa5;
   border-right: 0;
+  border: 1px solid #0f5aa5;
   border-left-color: red !important;
 }
 
@@ -232,8 +211,8 @@ input[type="text"], textarea, .form-control:focus {
   outline: none;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
-  border: 1px solid #0f5aa5;
   border-right: 0;
+  border: 1px solid #0f5aa5;
   background-color: #fcfcfc;
 }
 
@@ -242,14 +221,29 @@ input[type="text"], textarea, .form-control:focus {
   opacity: 1;
 }
 
+.form-control::-webkit-input-placeholder {
+  opacity: 0.7;
+}
+
+.form-control:-ms-input-placeholder {
+  opacity: 0.7;
+}
+
+.form-control::-ms-input-placeholder {
+  opacity: 0.7;
+}
+
+.form-control::placeholder {
+  opacity: 0.7;
+}
+
 .btn, .btn:focus {
-  border: 1px solid black;
+  -webkit-box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
+          box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
   width: 6em;
   height: 2.5em;
   font-size: 1.7em;
   padding: 0.2em;
-  -webkit-box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
-          box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
 }
 
 .btn-warning {

@@ -1,8 +1,15 @@
 
 var tasks = [];
 
-function fixformat(x){
-    if(x<10){
+function fixtextarea(x) {
+    for (var i = 0; i < x.length; i++) {
+        x[i].task = x[i].task.replace(/\n\r?/g, '<br />');
+    }
+    return x;
+}
+
+function fixformat(x) {
+    if (x < 10) {
         x = '0' + x;
     }
     return x;
@@ -28,11 +35,15 @@ function tutorialnotes() {
 
 
         var readydate = yyyy + '-' + mm + '-' + dd;
-        var readytime = h + ':' + m ;
+        var readytime = h + ':' + m;
 
-        tasks.push(createobj("Welcome to To-do list, these notes are a quick tutorial, they will re-apear if you clear all notes.", readydate, readytime, 0));
-        tasks.push(createobj("Hover on a note to edit or erase it - while in edit mode you cannot do other things", readydate, readytime, 1));
-        tasks.push(createobj("While in edit mode 2 new buttons will apear, use those buttons to save or cancel your edits.", readydate, readytime, 2));
+        tasks.push(createobj("Welcome to To-do list!<br />These notes are a quick tutorial, they will re-apear if you clear all notes and refresh.<br />The task input can be enlarged with the controller on the bottom right", readydate, readytime, 0));
+        tasks.push(createobj("Hover on a note (or tap it on mobile) to edit or erase it - while in edit mode you can't do other things", readydate, readytime, 1));
+        tasks.push(createobj("While in edit mode 2 new buttons will apear, use those buttons to save or cancel your changes.", readydate, readytime, 2));
+
+        tasks[0].task.replace(/<br\s?\/?>/g, "\n");
+        tasks[1].task.replace(/<br\s?\/?>/g, "\n");
+        tasks[2].task.replace(/<br\s?\/?>/g, "\n");
 
         for (var i = 0; i < 3; i++) {
             var container = document.getElementById("taskcontainer");
@@ -41,7 +52,7 @@ function tutorialnotes() {
 
             card.className = "taskcard";
 
-            card.innerHTML = "<span class='taskstyle'>" + tasks[i].task + "</span>" + "<span class='datestyle'>" + tasks[i].date + "</span>" + "<span class='timestyle'>" + tasks[i].time + "</span>" + "<i class='fas fa-times iconstyle' onclick='deletenote(" + tasks[i].id + ',this' + ")'></i>" + "<i class='far fa-edit editstyle' onclick='editnote(this)'></i>";
+            card.innerHTML = "<span class='taskstyle'>" + tasks[i].task + "</span>" + "<span class='datestyle'>" + tasks[i].date + "</span>" + "<span class='timestyle'>" + tasks[i].time + "</span>" + "<i class='fas fa-times iconstyle' onclick='deletenote(" + tasks[i].id + ',this' + ")'></i>" + "<i class='far fa-edit editstyle' onclick='editnote(" + tasks[i].id + ',this' + ")'></i>";
 
             container.append(card);
         }
@@ -55,6 +66,9 @@ tutorialnotes();
 function initializenotes() {
 
     var backup = JSON.parse(localStorage.getItem("tasks"));
+
+    backup = fixtextarea(backup);
+
     if (backup.length > 0) {
         tasks = backup;
     }
@@ -64,9 +78,10 @@ function initializenotes() {
     for (var i = 0; i < backup.length; i++) {
         var container = document.getElementById("taskcontainer");
         var card = document.createElement("div");
+        console.log("got in there");
 
         card.className = "taskcard";
-        card.innerHTML = "<span class='taskstyle'>" + backup[i].task + "</span>" + "<span class='datestyle'>" + backup[i].date + "</span>" + "<span class='timestyle'>" + backup[i].time + "</span>" + "<i class='fas fa-times iconstyle' onclick='deletenote(" + backup[i].id + ',this' + ")'></i>" + "<i class='far fa-edit editstyle' onclick='editnote(this)'></i>";
+        card.innerHTML = "<span class='taskstyle'>" + tasks[i].task + "</span>" + "<span class='datestyle'>" + tasks[i].date + "</span>" + "<span class='timestyle'>" + tasks[i].time + "</span>" + "<i class='fas fa-times iconstyle' onclick='deletenote(" + tasks[i].id + ',this' + ")'></i>" + "<i class='far fa-edit editstyle' onclick='editnote(" + tasks[i].id + ',this' + ")'></i>";
 
         container.append(card);
     }
@@ -82,7 +97,7 @@ function add() {
         document.getElementById("errormsg").innerHTML = "Save/cancel to exit edit mode";
     }
     else {
-        var task = document.forms["inputform"]["task"].value;
+        var task = document.forms["inputform"]["task"].value.replace(/\n\r?/g, '<br />');
         var date = document.forms["inputform"]["date"].value;
         var time = document.forms["inputform"]["time"].value;
         var id = Math.floor(Math.random() * 1000000);
@@ -97,7 +112,7 @@ function add() {
                 var container = document.getElementById("taskcontainer");
 
                 card.className = "taskcard";
-                card.innerHTML = "<span class='taskstyle'>" + tasks[taskindex].task + "</span>" + "<span class='datestyle'>" + tasks[taskindex].date + "</span>" + "<span class='timestyle'>" + tasks[taskindex].time + "</span>" + "<i class='fas fa-times iconstyle' onclick='deletenote(" + tasks[taskindex].id + ',this' + ")'></i>" + "<i class='far fa-edit editstyle' onclick='editnote(this)'></i>";
+                card.innerHTML = "<span class='taskstyle'>" + tasks[taskindex].task + "</span>" + "<span class='datestyle'>" + tasks[taskindex].date + "</span>" + "<span class='timestyle'>" + tasks[taskindex].time + "</span>" + "<i class='fas fa-times iconstyle' onclick='deletenote(" + tasks[taskindex].id + ',this' + ")'></i>" + "<i class='far fa-edit editstyle' onclick='editnote(" + tasks[taskindex].id + ',this' + ")'></i>";
 
                 container.append(card);
                 document.getElementById("totalnotes").innerHTML = " " + tasks.length;
@@ -111,6 +126,8 @@ function add() {
 }
 
 function deletenote(id, icon) {
+    console.log(icon);
+    console.log(id);
     var checkeditactive = document.getElementById("saveedit");
     if (checkeditactive !== null) {
         window.scroll(0, 0);
@@ -165,8 +182,10 @@ function clearallnotes() {
     }
 }
 
-function editnote(icon) {
+function editnote(id, icon) {
     document.getElementById("errormsg").innerHTML = "Edit mode";
+    console.log(icon);
+    console.log(id);
     icon.parentElement.style.border = "2px solid red";
     var checkeditactive = document.getElementById("saveedit");
     if (checkeditactive !== null) {
@@ -176,7 +195,7 @@ function editnote(icon) {
     else {
         window.scroll(0, 0);
 
-        document.forms["inputform"]["task"].value = icon.parentElement.children[0].innerHTML;
+        document.forms["inputform"]["task"].value = icon.parentElement.children[0].innerHTML.replace(/<br\s?\/?>/g, "\n");
         document.forms["inputform"]["date"].value = icon.parentElement.children[1].innerHTML;
         document.forms["inputform"]["time"].value = icon.parentElement.children[2].innerHTML;
 
@@ -189,7 +208,7 @@ function editnote(icon) {
         saveedit.className = "btn btn-success btn-lg mr-3";
         saveedit.innerHTML = "Save edit";
         saveedit.addEventListener('click', function () {
-            savechanges(icon);
+            savechanges(id, icon);
         });
 
         var canceledit = document.createElement("button");
@@ -206,12 +225,12 @@ function editnote(icon) {
         editbuttons.append(canceledit);
     }
 
-    function savechanges(icon) {
-        var oldtask = icon.parentElement.children[0].innerHTML;
+    function savechanges(id, icon) {
+        // var oldtask = icon.parentElement.children[0].innerHTML;
         // var olddate = icon.parentElement.children[1].innerHTML;
         // var oldtime = icon.parentElement.children[2].innerHTML;
 
-        var editedtask = document.forms["inputform"]["task"].value;
+        var editedtask = document.forms["inputform"]["task"].value.replace(/\n\r?/g, '<br />');
         var editeddate = document.forms["inputform"]["date"].value;
         var editedtime = document.forms["inputform"]["time"].value;
 
@@ -222,7 +241,7 @@ function editnote(icon) {
             icon.parentElement.children[2].innerHTML = editedtime;
 
             taskindex = tasks.findIndex(function (task) {
-                return task.task == oldtask;
+                return task.id == id;
 
             });
             tasks[taskindex].task = editedtask;
