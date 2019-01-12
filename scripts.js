@@ -38,8 +38,8 @@ function tutorialnotes() {
         var readytime = h + ':' + m;
 
         tasks.push(createobj("Welcome to To-do list!<br />These notes are a quick tutorial, they will re-apear if you clear all notes and refresh.<br />The task input can be enlarged with the controller on the bottom right", readydate, readytime, 0));
-        tasks.push(createobj("Hover on a note (or tap it on mobile) to edit or erase it - while in edit mode you can't do other things", readydate, readytime, 1));
-        tasks.push(createobj("While in edit mode 2 new buttons will apear, use those buttons to save or cancel your changes.", readydate, readytime, 2));
+        tasks.push(createobj("Hover on a note (or tap it on mobile) to edit or erase it<br />While in edit mode you can only clear form, save or cancel.", readydate, readytime, 1));
+        tasks.push(createobj("While in edit mode 2 new buttons will apear, use those buttons to save or cancel your changes.<br />Task and Date fields are mandatory", readydate, readytime, 2));
 
         tasks[0].task.replace(/<br\s?\/?>/g, "\n");
         tasks[1].task.replace(/<br\s?\/?>/g, "\n");
@@ -150,16 +150,16 @@ function deletenote(id, icon) {
 }
 
 function clearform() {
-    var checkeditactive = document.getElementById("saveedit");
-    if (checkeditactive !== null) {
-        window.scroll(0, 0);
-        document.getElementById("errormsg").innerHTML = "Save/cancel to exit edit mode";
-    }
-    else {
+    // var checkeditactive = document.getElementById("saveedit");
+    // if (checkeditactive !== null) {
+    //     window.scroll(0, 0);
+    //     document.getElementById("errormsg").innerHTML = "Save/cancel to exit edit mode";
+    // }
+    // else {
         document.forms["inputform"]["task"].value = "";
         document.forms["inputform"]["date"].value = "";
         document.forms["inputform"]["time"].value = "";
-    }
+    // }
 }
 
 function clearallnotes() {
@@ -186,7 +186,6 @@ function editnote(id, icon) {
     document.getElementById("errormsg").innerHTML = "Edit mode";
     console.log(icon);
     console.log(id);
-    icon.parentElement.style.border = "2px solid red";
     var checkeditactive = document.getElementById("saveedit");
     if (checkeditactive !== null) {
         window.scroll(0, 0);
@@ -194,6 +193,9 @@ function editnote(id, icon) {
     }
     else {
         window.scroll(0, 0);
+        icon.parentElement.style.border = "2px solid red";
+        document.getElementById("buttontokill1").style.display = "none";
+        document.getElementById("buttontokill2").style.display = "none";
 
         document.forms["inputform"]["task"].value = icon.parentElement.children[0].innerHTML.replace(/<br\s?\/?>/g, "\n");
         document.forms["inputform"]["date"].value = icon.parentElement.children[1].innerHTML;
@@ -236,6 +238,8 @@ function editnote(id, icon) {
 
         if (validation(editedtask, editeddate) == true) {
             icon.parentElement.style.border = "1px solid rgb(83, 47, 0)";
+            document.getElementById("buttontokill1").style.display = "inline-block";
+            document.getElementById("buttontokill2").style.display = "inline-block";
             icon.parentElement.children[0].innerHTML = editedtask;
             icon.parentElement.children[1].innerHTML = editeddate;
             icon.parentElement.children[2].innerHTML = editedtime;
@@ -269,6 +273,8 @@ function editnote(id, icon) {
     function discardchanges(icon) {
         console.log("discard");
         icon.parentElement.style.border = "1px solid rgb(83, 47, 0)";
+        document.getElementById("buttontokill1").style.display = "inline-block";
+        document.getElementById("buttontokill2").style.display = "inline-block";
         document.forms["inputform"]["task"].value = "";
         document.forms["inputform"]["date"].value = "";
         document.forms["inputform"]["time"].value = "";
